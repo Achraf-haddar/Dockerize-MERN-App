@@ -13,7 +13,7 @@ services:
       - /usr/src/app/node_modules
 
   api-server:
-    image: api-server
+    image: melkeor/api-server
     build: ./backend/
     ports: 
       - "3000:3000"
