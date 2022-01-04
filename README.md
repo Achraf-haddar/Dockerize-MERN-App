@@ -6,4 +6,4 @@ I then containerized the api server and react client and created docker-compose 
 ```
 make
 ```
-I tried to deploy the application on AKS (Azure Kubernetes cluster). I created three pods (backend, frontend and mongodb) attached with three services. I used nginx to make the Express api accessible from outside of kubernetes. You can see the demo [here](https://drive.google.com/file/d/1JLIibXXAJDI1RMO8rL-QgrRuA3qrX0S-/view?usp=sharing).
+I tried to deploy the application on AKS (Azure Kubernetes cluster). For this, I created three pods (backend, frontend and mongodb) attached with three services. I used nginx to make the Express api accessible from outside of kubernetes. You can see the demo [here](https://drive.google.com/file/d/1JLIibXXAJDI1RMO8rL-QgrRuA3qrX0S-/view?usp=sharing).
