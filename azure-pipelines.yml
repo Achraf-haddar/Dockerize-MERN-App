@@ -30,7 +30,7 @@ stages:
         tags: '$(tag)'
     - task: PublishPipelineArtifact@1
       inputs:
-        targetPath: '$(Build.SourcesDirectory)/s/kubernetes'
+        targetPath: '$(Build.SourcesDirectory)/kubernetes'
         artifact: 'manifests'
         publishLocation: 'pipeline'
     
