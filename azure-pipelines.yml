@@ -36,6 +36,7 @@ stages:
         repository: 'melkeor/$(imageFront)'
         command: 'buildAndPush'
         Dockerfile: '$(Build.SourcesDirectory)/frontend/ProdEnv/Dockerfile'
+        buildContext: '$(Build.SourcesDirectory)/frontend/'
         tags: '$(tag)'
     
     
