@@ -29,7 +29,9 @@ stages:
         repository: 'melkeor/$(imageBackend)'
         command: 'buildAndPush'
         Dockerfile: '$(Build.SourcesDirectory)/backend/Dockerfile'
-        tags: '$(tag)'
+        tags: | 
+          $(tag)
+          latest
     - task: Docker@2
       inputs:
         containerRegistry: 'Docker-Registery'
@@ -37,7 +39,9 @@ stages:
         command: 'buildAndPush'
         Dockerfile: '$(Build.SourcesDirectory)/frontend/ProdEnv/Dockerfile'
         buildContext: '$(Build.SourcesDirectory)/frontend/'
-        tags: '$(tag)'
+        tags: | 
+          $(tag)
+          latest
     
     
     - task: PublishPipelineArtifact@1
