@@ -54,30 +54,33 @@ stages:
   displayName: Deploy to Dev
   dependsOn: Build
   jobs:
-  - job: Deploy
+  - deployment: Deploy
     displayName: Deploy to AKS
+    environment: 'k8sdev.default'
     pool: 
       vmImage: ubuntu-latest
-    steps:
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        buildType: 'current'
-        artifactName: 'manifests'
-        targetPath: '$(Pipeline.Workspace)/manifests'
-    - task: KubernetesManifest@0
-      inputs:
-        action: 'deploy'
-        kubernetesServiceConnection: 'AzureDevOps-connection-Kubernetes'
-        namespace: 'default'
-        manifests: |
-          $(Pipeline.Workspace)/manifests/mongodb-pod.yml
-          $(Pipeline.Workspace)/manifests/mongodb-service.yml
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              buildType: 'current'
+              artifactName: 'manifests'
+              targetPath: '$(Pipeline.Workspace)/manifests'
+          - task: KubernetesManifest@0
+            inputs:
+              action: 'deploy'
+              namespace: 'default'
+              manifests: |
+                $(Pipeline.Workspace)/manifests/mongodb-pod.yml
+                $(Pipeline.Workspace)/manifests/mongodb-service.yml
 
-          $(Pipeline.Workspace)/manifests/backEnd-service.yml
-          $(Pipeline.Workspace)/manifests/backEnd-deployment.yml
-          
-          $(Pipeline.Workspace)/manifests/frontEnd-service.yml
-          $(Pipeline.Workspace)/manifests/frontEnd-deployment.yml
-          
+                $(Pipeline.Workspace)/manifests/backEnd-service.yml
+                $(Pipeline.Workspace)/manifests/backEnd-deployment.yml
+                
+                $(Pipeline.Workspace)/manifests/frontEnd-service.yml
+                $(Pipeline.Workspace)/manifests/frontEnd-deployment.yml
+                
 
 
