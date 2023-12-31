@@ -1,13 +1,36 @@
-# Dockerize MERN Application
+# Dockerized MERN Application with AKS Deployment
 
-I followed this [tutorial](https://medium.com/swlh/how-to-create-your-first-mern-mongodb-express-js-react-js-and-node-js-stack-7e8b20463e66) to get basic app working.
+This project focuses on containerizing a MERN (MongoDB, Express.js, React, Node.js) application using Docker. Additionally, it includes a docker-compose setup for connecting the backend, frontend, and MongoDB containers.
 
-I then containerized the api server and react client and created docker-compose to connect them. You can clone the repository and run the following command:
-```
-make
-```
-I tried to deploy the application on AKS (Azure Kubernetes cluster). For this, I created three pods (backend, frontend and mongodb) attached with three services. I used nginx to make the Express api accessible from outside of kubernetes. You can see the demo [here](https://drive.google.com/file/d/1JLIibXXAJDI1RMO8rL-QgrRuA3qrX0S-/view?usp=sharing).
+## Quick Start
 
-# Build Full CI CD using Devops Azure and Deploy to AKS:
-I used Devops Azure to build a full CI CD pipeline and deploy the containers on AKS.
-You can see the demo [here](https://drive.google.com/file/d/1DlhI39iWF8_WjnV8wD7OUD8Xh7SLbps3/view?usp=sharing).
+Clone the repository and run the following command to set up the containers: `make`
+
+## Containerization Details
+
+The project includes Dockerfiles for both the frontend and backend components, along with a docker-compose file to orchestrate the containers. MongoDB docker image retrieved from Docker Hub and linked with backend container using docker-compose.
+
+## AKS Deployment
+
+The application was deployed on Azure Kubernetes Service (AKS). Three pods were created for the backend, frontend, and MongoDB, each associated with their respective services. Nginx was employed to make the Express API accessible from outside the Kubernetes cluster. Check out the [demo](https://drive.google.com/file/d/1JLIibXXAJDI1RMO8rL-QgrRuA3qrX0S-/view?usp=sharing).
+
+## CI/CD with Azure DevOps
+
+Azure DevOps was utilized to establish a comprehensive CI/CD pipeline, automating the build and deployment processes. The containers are deployed to AKS as part of this pipeline. Explore the [demo](https://drive.google.com/file/d/1DlhI39iWF8_WjnV8wD7OUD8Xh7SLbps3/view?usp=sharing) for a visual walkthrough.
+
+## Project Structure
+
+- **backend/:** Backend application code and Dockerfile.
+- **frontend/:** Frontend application code and Dockerfile.
+- **docker-compose.yml:** Docker-compose configuration for connecting containers.
+- **azure-pipeline.yml:** Azure DevOps pipeline configuration file.
+- **Makefile:** Makefile with a startup command for easy setup.
+
+## Clean Up
+
+To stop and remove the containers, run: `make clean`
+
+## Demo Videos
+
+- [AKS Deployment](https://drive.google.com/file/d/1JLIibXXAJDI1RMO8rL-QgrRuA3qrX0S-/view?usp=sharing)
+- [Azure DevOps CI/CD](https://drive.google.com/file/d/1DlhI39iWF8_WjnV8wD7OUD8Xh7SLbps3/view?usp=sharing)
